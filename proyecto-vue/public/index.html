@@ -11,7 +11,21 @@
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app"></div>
+    <div id="app">
+      <h1>Registro de nombres</h1>
+        <form @submit.prevent="addName">
+          <input type="text" v-model="newName.firstName" placeholder="First Name">
+          <input type="text" v-model="newName.lastName" placeholder="Last Name">
+          <button type="submit">Add Name</button>
+        </form>
+      <ul>
+        <li v-for="(name, index) in names" :key="index">
+          <input type="text" v-model="name.firstName" @change="updateName(name, index)">
+          <input type="text" v-model="name.lastName" @change="updateName(name, index)">
+          <button @click="deleteName(index)">Delete Name</button>
+        </li>
+      </ul>
+    </div>
     <!-- built files will be auto injected -->
   </body>
 </html>
